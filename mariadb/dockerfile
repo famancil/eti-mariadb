@@ -1,0 +1,17 @@
+#
+# MariaDB Dockerfile
+#
+# 
+FROM mariadb/server:10.3
+    
+ADD sql/ /sql/
+
+WORKDIR /sql
+
+COPY ./sql/start.sql /sql
+
+ADD container-files/ /
+
+RUN chmod 700 /init-databases.sh
+
+EXPOSE 3306
